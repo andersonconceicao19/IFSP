@@ -1,6 +1,22 @@
+#include <stdio.h>
 #include <iostream>
 #include <locale.h>
 using namespace std;
+
+string CompararMatriz(int *matriz[], int *matriz2[])
+{
+	for(int i = 0; i< 3; i++)
+	{		
+		for(int j=0;j<3;j++)
+		{		
+			if(matriz[i][j] != matriz2[i][j])
+			{
+				return "As Matrizes nao sao iguais";
+			}	
+		}
+	}
+	return "As Matrizes sao iguais";
+}
 
 int main(int argc, char** argv)
 {
@@ -17,8 +33,7 @@ int main(int argc, char** argv)
 		for(j=0;j<3;j++)
 		{		
 			cout << "Inserir valor: ";
-			cin >> matriz[i][j];
-			//clear();			
+			cin >> matriz[i][j];						
 		}
 	}
 	for(i = 0; i< 3; i++)
@@ -28,20 +43,11 @@ int main(int argc, char** argv)
 		{
 			matriz2[i][j] = i + j;
 		}
+		// 0, 1, 2, 1, 2, 3, 2, 3, 4
 	}
-	for(i = 0; i< 3; i++)
-	{
-		
-		for(j=0;j<3;j++)
-		{		
-			if(matriz[i][j] == matriz2[i][j])
-			{
-				cout << "As matrizes sao iguais. Nas posições: " << matriz[i] <<" x " << matriz2[i]<< endl;;
-			}	
-		}
-		//cout << endl;
-	}
-	delete[] matriz;
 	
+	cout << CompararMatriz(matriz, matriz2);
+	delete[] matriz;
+	delete[] matriz2;
 	return 0;
 }
