@@ -82,7 +82,7 @@ class Investimento {
 
         /**Calcular WEGE3 
             *
-            * Site pego como base https://statusinvest.com.br/acoes/enat3. 
+            * Site pego como base https://statusinvest.com.br/acoes/wege3. 
             * Preço da ação usado como base é do dia 07.09.2020;
             *             
         */
