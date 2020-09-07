@@ -8,6 +8,7 @@ class Investimento {
         double precoPorAcao; 
         String result;
         boolean ENAT3 = false;
+        boolean ITSA4 = false;
         double LPA;
 
         /**Calcular ENAT3 
@@ -43,6 +44,33 @@ class Investimento {
             result = String.format("%.2f", (precoPorAcao / 10.95));
             System.out.println("P/VP: " + result);
         }
+        if(!ITSA4)
+        {
+            /**Dividend Yield */
+            ITSA4 = true;
+            dividendPorAcao = 0.5494;
+            precoPorAcao = 9.77;
+
+            LPA = 0.83;
+            
+            result = String.format("%.2f", ((dividendPorAcao / precoPorAcao ) * 100));
+            System.out.println(" ITSA4 Dividend Yield: " + result);
+            
+            /*
+            *P/L 
+            * LPA pego do site de referencia acima citado.
+            */
+            result = String.format("%.2f", (precoPorAcao / LPA));
+            System.out.println("P/L: " + result);
+
+            /*
+            *P/VP
+            * VPO = Patrimonio liquido(52.896.000.000)/ Numero de papeis(8.410.814.930) = 10.95
+            */
+            result = String.format("%.2f", (precoPorAcao / 6.29));
+            System.out.println("P/VP: " + result);
+        }
+
 
     }
 }
