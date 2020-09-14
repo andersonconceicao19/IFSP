@@ -1,9 +1,13 @@
 class Investimento {
     public static void main(String[] args)
     {
-        // System.out.println("Teste");
-
-        //Dividend Yield
+        /**
+         * Turma ADS 371
+         * 
+         * Nomes: Anderson Silva da Conceição.
+         *        Renato Santos
+         */
+       
         double dividendPorAcao; 
         double precoPorAcao; 
         String result;
