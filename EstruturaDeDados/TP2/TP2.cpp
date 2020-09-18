@@ -1,4 +1,4 @@
-include <iostream>
+#include <iostream>
 #include <string>
 #include <ctime>
 #include <vector>
@@ -94,23 +94,22 @@ class Contato
 		string email;
 		string nome;
 		string telefone;
-		string dtnasc;
+		string nasc;
 		
 	public:
-		//construtor
-		Contato(string email, string nome, string telefone, string dtnasc)
+		Contato(string email, string nome, string telefone, string nasc)
 		{
 			this->email = email;
 			this->nome = nome;
 			this->telefone = telefone;
-			this->dtnasc = dtnasc;
+			this->nasc = nasc;
 		}		
 		Contato()
 		{
 			this->email = "";
 			this->nome = "";
 			this->telefone = "";
-			this->dtnasc = "";
+			this->nasc = "";
 		}
 		
 		//setters
@@ -126,12 +125,11 @@ class Contato
 		{
 			this->telefone = telefone;
 		}
-		void setDtnasc(string dtnasc)
+		void setNasc(string nasc)
 		{
-			this->dtnasc = dtnasc;
+			this->nasc = nasc;
 		}
 		
-		//getters
 		string getEmail()
 		{
 			return this->email;
@@ -144,18 +142,18 @@ class Contato
 		{
 			return this->telefone;
 		}
-		string getDtnasc()
+		string getNasc()
 		{
-			return this->dtnasc;
+			return this->nasc;
 		}
 		
 		int getIdade()
 		{
 			Data *dtHoje = new Data(6, 9, 2020);
 			int anoAtual = dtHoje->getAno();
-			int anoNasc = stoi((this->dtnasc).substr(6, 4)); // extraindo ano
-			int mesNasc = stoi((this->dtnasc).substr(3, 2)); // extraindo mês
-			int diaNasc = stoi((this->dtnasc).substr(0, 2)); // extraindo dia
+			int anoNasc = stoi((this->nasc).substr(6, 4)); // extraindo ano
+			int mesNasc = stoi((this->nasc).substr(3, 2)); // extraindo mês
+			int diaNasc = stoi((this->nasc).substr(0, 2)); // extraindo dia
 			
 			int idade = anoAtual - anoNasc;			
 			if(dtHoje->getMes() < mesNasc) {
@@ -170,64 +168,58 @@ class Contato
 		}
 };
 
-
-// Funções
-// resumo dos contatos e suas respectivas idades
-void resumoContatos(Contato *contatos[])
+void resContatos(Contato *contatos[])
 {
 	for(int i=0; i<TAM; i++)
 	{
 		string nome = contatos[i]->getNome();
-		string dtNasc = contatos[i]->getDtnasc();
+		string nasc = contatos[i]->getNasc();
 		string idade = to_string(contatos[i]->getIdade());
-		cout << nome << " --->\t" << "DN: " << dtNasc << " - " << idade << " anos" << endl;
+		cout << nome << " --->\t" << "DN: " << nasc << " - " << idade << " anos" << endl;
 	}
 }
 
-// cálculo da média de idade dos contatos
-int calcMedia(Contato *contatos[])
+int mediaIdade(Contato *contatos[])
 {
-	int contIdade = 0;
-	// somando idades dos contatos
+	int ci = 0;
 	for(int i=0; i<TAM; i++)
 	{
-		contIdade += contatos[i]->getIdade();
+		ci += contatos[i]->getIdade();
 	}
 	
-	return contIdade / TAM;
+	return ci / TAM;
 }
 
-// retornando array com contatos com idade acima da média
-vector<string> getAcimaMedia(Contato *contatos[])
+vector<string> acimaDaMedia(Contato *contatos[])
 {
-	vector<string> acimaMedia;	
+	vector<string> media;	
 	for(int i=0; i<TAM; i++)
 	{
-		if(contatos[i]->getIdade() > calcMedia(contatos))
+		if(contatos[i]->getIdade() > mediaIdade(contatos))
 		{
-			acimaMedia.push_back(contatos[i]->getNome());
+			media.push_back(contatos[i]->getNome());
 		}
 	}
 	
-	return acimaMedia;	
+	return media;	
 }
 
-// retorna quantidade de contatos maiores de idade
-int getQuantMaior18(Contato *contatos[])
+
+int maioresDeDezoito(Contato *contatos[])
 {
-	int quantMaior18 = 0;
+	int maiores = 0;
 	for(int i=0; i<TAM; i++)
 	{
 		if(contatos[i]->getIdade() >= 18)
 		{
-			quantMaior18++;
+			maiores++;
 		}
 	}
 	
-	return quantMaior18;
+	return maiores;
 }
 
-// retorna um array de strings com os nomes dos contatos mais velhos.
+
 vector<string> getMaisVelho(Contato *contatos[])
 {
 	vector<string> contatoMaior;
@@ -252,7 +244,7 @@ vector<string> getMaisVelho(Contato *contatos[])
 		}
 	}
 	
-	contatoMaior.push_back(to_string(maior)); // adicionando idade mais velha no final do array
+	contatoMaior.push_back(to_string(maior)); 
 	return contatoMaior;
 }
 
@@ -261,18 +253,12 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL,"");
 	
 	Contato *contatos[TAM];
-	/*contatos[0] = new Contato("eleson@hotmail.com", "Eleson Souza", "(13)99999-0000", "04/11/1996");
-	contatos[1] = new Contato("camila@gmail.com", "Camila Santos", "(13)95268-7825", "05/04/1988");
-	contatos[2] = new Contato("isabela@yahoo.com", "Isabella Vitória", "(13)98236-4536", "02/06/2004");
-	contatos[3] = new Contato("matheus@gmail.com", "Matheus Santana", "(13)96345-2630", "22/11/1980");
-	contatos[4] = new Contato("maiara@hotmail.com", "Maiara Pereira", "(13)98634-2365", "15/07/1989");*/
-	//Contato *contatos[3];
 	
-	string nome, email, telefone, dtNasc;
+	string nome, email, telefone, nasc;
 	for(int i=0; i<TAM; i++)
 	{
 		cout << "CONTATO " << i + 1 << endl;
-		cout << "---------------------------" << endl;
+		cout << endl;
 		
 		cout << "Nome: ";
 		cin >> nome;
@@ -284,34 +270,31 @@ int main(int argc, char** argv)
 		cin >> telefone;
 		
 		cout << "Data Nasc. (dd/mm/aaaa): ";
-		cin >> dtNasc;
+		cin >> nasc;
 		
-		contatos[i] = new Contato(email, nome, telefone, dtNasc);
+		contatos[i] = new Contato(email, nome, telefone, nasc);
 		cout << endl;
 	}
 	
-	// EXIBIÇÕES
-	// resumo dos contatos e suas idades
-	resumoContatos(contatos);
+	resContatos(contatos);
 	
-	// contatos maiores de idade
-	cout << endl << "MÉDIA DAS IDADES: " << calcMedia(contatos) << " anos" << endl;
-	cout << endl << "CONTATOS MAIORES DE IDADE: " << getQuantMaior18(contatos) << " CONTATOS" << endl;
+	cout << endl << "MÉDIA DAS IDADES: " << mediaIdade(contatos) << " anos" << endl;
+	cout << endl << "CONTATOS MAIORES DE IDADE: " << maioresDeDezoito(contatos) << " CONTATOS" << endl;
 	
-	// contatos acima da idade geral de idade
-	vector<string> nomesAcimaMedia = getAcimaMedia(contatos);
-	cout << endl << "CONTATOS ACIMA DA MÉDIA DE IDADE (" << calcMedia(contatos) << " ANOS):" << endl;
-	for(int i=0; i<nomesAcimaMedia.size(); i++)
+	
+	vector<string> nomesmedia = acimaDaMedia(contatos);
+	cout << endl << "CONTATOS ACIMA DA MÉDIA DE IDADE (" << mediaIdade(contatos) << " ANOS):" << endl;
+	for(int i=0; i<nomesmedia.size(); i++)
 	{
-		cout << nomesAcimaMedia[i] << endl;
+		cout << nomesmedia[i] << endl;
 	}
 	
-	// contatos mais velhos de idade
-	vector<string> nomesMaisVelhos = getMaisVelho(contatos);
-	cout << endl << "CONTATOS MAIS VELHOS (" << nomesMaisVelhos[nomesMaisVelhos.size()-1] << " ANOS): " << endl;
-	for(int i=0; i<nomesMaisVelhos.size()-1; i++)
+	vector<string> maisVelhos = getMaisVelho(contatos);
+	
+	cout << endl << "CONTATOS MAIS VELHOS (" << maisVelhos[maisVelhos.size()-1] << " ANOS): " << endl;
+	for(int i=0; i<maisVelhos.size()-1; i++)
 	{
-		cout << i+1 << " - " << nomesMaisVelhos[i] << endl;
+		cout << i+1 << " - " << maisVelhos[i] << endl;
 	}
 
 	return 0;
