@@ -7,6 +7,7 @@ public class Ex18 {
     double 
       somaPreco = 0, 
       pagamento, 
+      rM,
       p,
       prods = 5;
     
@@ -24,11 +25,11 @@ public class Ex18 {
     valor = scanner.next();
     pagamento = Double.parseDouble(valor);
 
-    double remainingMoney;
 
-    remainingMoney = pagamento - somaPreco;      
+
+    rM = pagamento - somaPreco;      
 
     System.out.println();
-    System.out.println("Troco: " + remainingMoney);       
+    System.out.println("Troco: " + rM);       
   }
 }
