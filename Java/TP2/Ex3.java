@@ -3,16 +3,17 @@ public class Ex3 {
   public static void main(String[] args) {   
     String valor;
     Scanner scanner = new Scanner(System.in);
-    int sl;
+    double positivos, negativos, maior, menor, soma;
+
+    int sl =0;
     do{
         int n;
-        double positivos = 0;
-        double negativos = 0;
-       
+        positivos = 0;
+        negativos = 0;    
+        maior = 0;
+         menor = 0;
+        soma = 0;
 
-        double maior = 0;
-        double menor = 0;
-        double soma = 0;
         do{
             System.out.println("Digite quantos serao digitados: Tem de ser menor que 20");
             valor = scanner.next();    
@@ -70,17 +71,11 @@ public class Ex3 {
       
         System.out.println("Deseja encerrar ? N ou S ");
         valor = scanner.next(); 
-
-        if(valor == "n")
-        {
-            sl = 0;
-        }
-        else{
-            break;
-        }             
+        
+           
     }
-    while(sl != 0);
+    while(valor == "n");
 
-    System.out.println("Encerrado! ");
+    
   }
 }
