@@ -14,6 +14,8 @@ Lista* insert(Lista* lista, int i);
 void print(Lista* lista);
 Lista* find(Lista* lista, int i);
 Lista* remove(Lista* lista, int i);
+void freeList(Lista* lista);
+
 
 int main(int argc, char** argv)
 {
@@ -39,6 +41,11 @@ int main(int argc, char** argv)
     {
    	   cout <<"Nao encontrado" << endl;
     }
+    minhaLista = remove(minhaLista, 7); // Removendo  o elemento passado por parametro
+    
+    print(minhaLista);
+    
+    freeList(minhaLista);
 
 	return 0;
 }	
@@ -94,8 +101,43 @@ Lista* find(Lista* lista, int i) // 5 - Encontrar elemento passado por parametro
 
 Lista* remove(Lista* lista, int i){
 	
-	Lista* ant;
+	Lista* ant = NULL;
 	Lista* aux;
 	
 	aux = lista;
+	while(aux != NULL && aux->dado != i)
+	{
+		/*
+			Enquanto a valor nao foi encontrado, o anterior recebe o auxiliar que foi verificado (a)
+			Depois a logica faz o auxiliar para o Proximo elemento, para pesquisa (b)
+		*/
+		ant = aux; // (a)
+		aux = aux->prox; // (b)
+	}
+	if(aux == NULL)
+	{
+		return lista; // Se não encontrar o elemento, retorna a lista como ela veio.
+	}
+	if(ant == NULL) // Se cair nessa condição, significa que o Elemento requerido era o >>primeiro da lista<<.
+	{
+		lista = aux->prox;
+	}else // Significa que estava no meio da lista
+	{
+		ant->prox = aux->prox;
+	}
+	free(aux); // Libera o conteudo que estava no espaço de memoria apontado
+	
+	return lista;
+}
+
+void freeList(Lista* lista){
+	Lista* aux; // Declarando uma variavel auxiliar
+	aux = lista; // Setando o auxiliar com o valor da lista;
+	while(aux != NULL)
+	{
+		Lista *anterior = aux->prox; // Para cada loop é pego nessa anterior o valor do proximo elemento
+		free(aux); // Libera na memoria o valor contido na lista
+		aux = anterior; 
+		// pega os valores restantes, que foi passado ao anterior, e repassa ao auxiliar. Até acabar o loop
+	}
 }
