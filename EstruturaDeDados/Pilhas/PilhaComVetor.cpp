@@ -1,29 +1,32 @@
 #include <iostream>
 using  namespace std;
 
-struct No {
-	int valor;
-	struct No *prox;
-};
+#define MAX 30
 
 struct Par {
-	No *topo;
+	int qtde;
+	int nos[MAX];
 };
 
 struct Impar {
-	No *topo;
+	int qtde;
+	int nos[MAX];
 };
 
 Par* initPar();
+
 Impar* initImpar();
-void pushImpar(Impar *i, int v);
+
 void pushPar(Par *p, int v);
-void printImpares(Impar *i);
+
+void pushImpar(Impar *i, int v);
+
 void printPares(Par *p);
 
+void printImpares(Impar *i);
 
 int main(int argc, char** argv)
-{	
+{
 	Par *parInt;
 	parInt = initPar();
 	
@@ -32,12 +35,12 @@ int main(int argc, char** argv)
 	
 	int num, ant;
 	for(int i=0; i<30; i++) {
-		cout << "Digite um numero (" << i+1 << "): ";
+		cout << "Digite um numero: ";
 		cin >> num;
 		
 		while(i != 0 && num <= ant) {
 			cout << "O Numero nao pode ser menor que anterior <" << ant << "> !!" << endl;
-			cout << "Digite um numero " << i+1 << ": ";
+			cout << "Digite um numero: ";
 			cin >> num;
 		}
 		
@@ -54,51 +57,41 @@ int main(int argc, char** argv)
 	
 	return 0;
 }
+
 Par* initPar() {
 	Par *p = new Par;
-	p->topo = NULL;
+	p->qtde = 0;
 	return p;
 }
 
 Impar* initImpar() {
-
 	Impar *i = new Impar;
-	i->topo = NULL;
+	i->qtde = 0;
 	return i;
+}
 
+void pushPar(Par *p, int v) {
+	p->nos[p->qtde] = v;
+	p->qtde++;
 }
 
 void pushImpar(Impar *i, int v) {
-	No *no = new No;
-	no->valor = v;
-	no->prox = i->topo;
-	i->topo = no;
+	i->nos[i->qtde] = v;
+	i->qtde++;
 }
-void pushPar(Par *p, int v) {
-	No *no = new No;
-	no->valor = v;
-	no->prox = p->topo;
-	p->topo = no;
-}
-void printImpares(Impar *i) {
-	No *no;
-	no = i->topo;
-	
-	cout << endl << "Pilha de Ímpares" << endl;
-	while(no != NULL) {
-		cout << no->valor << endl;
-		no = no->prox;
-	}
-	cout << "------------------------" << endl;
-}
+
 void printPares(Par *p) {
-	No *no;
-	no = p->topo;
-	
 	cout << endl << "Pilha de Pares" << endl;
-	while(no != NULL) {
-		cout << no->valor << endl;
-		no = no->prox;
+	for(int i = p->qtde-1; i>=0; i--) {
+		cout << p->nos[i] << endl;
 	}
-	cout << "------------------------" << endl;
+	cout << "------------------" << endl;
+}
+
+void printImpares(Impar *i) {
+	cout << endl << "Pilha de Ímpares" << endl;
+	for(int x = i->qtde-1; x>=0; x--) {
+		cout << i->nos[x] << endl;
+	}
+	cout << "------------------" << endl;
 }
