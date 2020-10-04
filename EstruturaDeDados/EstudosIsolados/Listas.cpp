@@ -12,31 +12,38 @@ Lista* init();
 int isEmpty(Lista* lista);
 Lista* insert(Lista* lista, int i);
 void print(Lista* lista);
-
+Lista* find(Lista* lista, int i);
+Lista* remove(Lista* lista, int i);
 
 int main(int argc, char** argv)
 {
 	Lista *minhaLista;
-	minhaLista = init(); // 1
+	minhaLista = init();
 	
-	// cout << "Lista vazia: " << (isEmpty(minhaLista)?"Sim":"Nao") << endl;
+	cout << "Lista vazia: " << (isEmpty(minhaLista)?"Sim":"Nao") << endl;
 	
-	// 3
 	minhaLista = insert(minhaLista, 5);
 	minhaLista = insert(minhaLista, 10);
 	minhaLista = insert(minhaLista, 7);
-	minhaLista = insert(minhaLista, 11);
 	
-	print(minhaLista); 
-	/** Imprimindo na tela os valores da lista
-	* Notar que o valor de exibição é do ultimo inserido até o primeiro inserido
-	* Ou seja, exibe de forma decrescente.
- 	*/
+	cout << "Lista vazia: " << (isEmpty(minhaLista)?"Sim":"Nao") << endl;
 	
+	print(minhaLista);
 	
-	
+	Lista *procurado = find(minhaLista, 1); 
+	if (procurado->dado > -1)
+	{
+  	   cout << "Resultado da busca: " << procurado->dado << endl;		
+	}
+    else
+    {
+   	   cout <<"Nao encontrado" << endl;
+    }
+
 	return 0;
-}
+}	
+	
+// --------------------------------------------------------------------------------------
 
 Lista* init() // 1 - Inicializando o primeiro valor com null;
 {
@@ -68,5 +75,27 @@ void print(Lista* lista) // 4 - Printando a lista.
 	}
 }
 
-//aqui
+Lista* find(Lista* lista, int i) // 5 - Encontrar elemento passado por parametro
+{
+	Lista* aux; // Declarando um aux. do tipo lista
+	aux = lista;
+	while (aux != NULL && aux->dado != i) 
+	{
+		aux = aux->prox; // Pulando os elementos até verificar se existe o referenciado
+	}
+	if (aux == NULL) // Para caso chegue no valor nulo.
+	{
+		aux = new Lista; 
+		aux->dado = -1; // setando o valor para retorno de -1, para que o objeto que receber faça a logica necessaria
+		aux->prox = NULL; // setando o proximo como null
+	}
+	return aux; // retornando o novo elemento encontrado ou a nova instancia com -1
+}
 
+Lista* remove(Lista* lista, int i){
+	
+	Lista* ant;
+	Lista* aux;
+	
+	aux = lista;
+}
