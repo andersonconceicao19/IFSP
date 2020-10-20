@@ -6,20 +6,12 @@ public class progtest {
 	public static void main(String[] args)
 	{
 	 	/* Passando parametros pelo construtor */
-		 horas h = new horas(2, 00, 01);
+		 // horas h = new horas(2, 00, 01);
 		 
-		 /* * Para entrar com valores próprios, basta descomentar este código & Comentar a instancia acima.
 		  
 		  
-		  // Sem passar parametro pelo construtor
+		  // Sem passar parametro pelo construtor, pegando valor digitado pelo usuario
 		  horas h = new horas();
-		 
-		// Setando valores apartir da digitação do usuario.
-		 		 
-		h.setHor();	
-		h.setMin();	
-		h.setSeg();
-		*/
 		 
 		
 		 // pegando valores das propriedades setados anteriormente.

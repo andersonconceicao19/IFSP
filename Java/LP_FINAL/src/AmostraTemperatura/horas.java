@@ -1,4 +1,4 @@
-package Horas;
+package AmostraTemperatura;
 
 import java.util.Scanner;
 
