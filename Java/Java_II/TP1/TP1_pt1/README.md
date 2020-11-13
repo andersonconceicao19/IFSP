@@ -1,14 +1,17 @@
-## Getting Started
+Uma classe chamada Author é desenhada para servir de modelo para autores de livros,
+veja abaixo:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
-## Folder Structure
+- 3 atributos privados name (String), email (String), and gender (char of either 'm' or 'f');
+- Um construtor para inicializar os atributos com base nos 3 parâmetros.
+- Não existe um construtor default para Author [Author()].
+- Criar métodos públicos: getName(), getEmail(), setEmail(), and getGender().
+- Não existe setter para name e gender, estes atributos não podem ser alterados.
+- Um método chamado toString() que retorna "Author[name=?,email=?,gender=?]",
+exemplo "Author[name=Wellington Tuler,email=tulermoraes@yahoo.com,gender=m]".
+- Escreva a classe Author e desenvolva uma de teste, com os seguintes itens:
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+- Testar construtor.
+- Verificar o método toString().
+- Testar o Setter
+- Testar os getters
