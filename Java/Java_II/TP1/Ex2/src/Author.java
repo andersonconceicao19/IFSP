@@ -1,11 +1,10 @@
-
-public class author {
+public class Author {
 
     private String name;
     private String email;
     private char gender = 'm' | 'f';
 
-    public author(String n,String e, char g) {
+    public Author(String n,String e, char g) {
         
         try {
             error(g);

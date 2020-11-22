@@ -2,7 +2,7 @@ public class Teste {
     public static void main(String[] args) throws Exception {
 
         
-        author author = new author("anderson", "@email.com", 'm');
+        Author author = new Author("anderson", "@email.com", 'm');
 
         System.out.println("Nome: " + author.getName());
         System.out.println("Email: " + author.getEmail());
